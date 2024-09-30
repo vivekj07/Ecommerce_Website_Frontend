@@ -1,0 +1,42 @@
+.chart-container {
+  background-color: white;
+  padding: 4rem;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  >h1 {
+    margin: 0 0 5rem 2rem;
+  }
+
+  >section {
+    width: 80%;
+    height: 25rem;
+    margin: 4rem auto;
+    margin-top: 8rem;
+    // box-sizing: border-box;
+
+    >div {
+      max-width: 20rem;
+      margin: auto;
+      margin-top: 4rem;
+      margin-bottom: -1rem;
+      height: 80%;
+    }
+
+    >h2 {
+      width: 95%;
+      margin: 2rem auto;
+      text-align: center;
+      @include heading(2px);
+      //border: 1px solid rgb(15, 15, 15, 0.4);
+      border-radius: 8px;
+      color: black;
+      /* Bright Cyan */
+      background-color: rgb(219, 152, 51, 0.1);
+      /* Dark Charcoal */
+    }
+  }
+}
