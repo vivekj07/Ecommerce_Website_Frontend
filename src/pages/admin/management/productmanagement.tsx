@@ -31,7 +31,7 @@ const Productmanagement = () => {
   const [nameUpdate, setNameUpdate] = useState<string>(name);
   const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
   const [photoUpdate, setPhotoUpdate] = useState<string>("");
-  const [photoFile, setPhotoFile] = useState<File>();
+  const [, setPhotoFile] = useState<File>();
 
 
   const changeImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
