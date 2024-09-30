@@ -37,7 +37,7 @@ for (let i = 0; i < 6; i++) {
 const Dashboard = () => {
   const { user } = useSelector((state: { userReducer: userReducerInitialState }) => state.userReducer)
 
-  const { data, isError, error, isLoading } = useStatsQuery(user?._id!);
+  const { data, isError, isLoading } = useStatsQuery(user?._id!);
 
   const stats = data?.stats!;
   if (isError) return <Navigate to={"/"} />;
