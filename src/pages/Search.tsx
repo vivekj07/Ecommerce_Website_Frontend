@@ -109,7 +109,7 @@ const search = () => {
                     {
                         SearchedLoading ? <Skeleton length={10} /> :
                             SearchedData?.products.map((i) => (
-                                <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo.url} stock={i.stock} price={i.price}
+                                <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo} stock={i.stock} price={i.price}
                                     handler={addToCartHandler} />
                             ))
                     }

@@ -4,7 +4,10 @@ import { CartItem } from "../types/types";
 type ProductsProps = {
     name: string;
     productID: string;
-    photo: string;
+    photo: {
+        url:string,
+        public_id:string
+    };
     stock: number;
     price: number;
     handler: (cartItem: CartItem) => void;
@@ -15,7 +18,7 @@ type ProductsProps = {
 const ProductCard = ({ name, productID, photo, stock, price, handler }: ProductsProps) => {
     return (
         <div className="product-card">
-            <img src={`${photo}`} alt={name}></img>
+            <img src={`${photo.url}`} alt={name}></img>
             <p>{name}</p>
             <span>₹{price}</span>
 

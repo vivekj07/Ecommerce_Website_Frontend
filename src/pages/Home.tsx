@@ -32,7 +32,7 @@ const Home = () => {
             <main>
                 {isLoading ? <Skeleton /> :
                     data?.products.map((i) => {
-                        return <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo.url} stock={i.stock} price={i.price}
+                        return <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo} stock={i.stock} price={i.price}
                             handler={addToCartHandler} />
                     })}
 
