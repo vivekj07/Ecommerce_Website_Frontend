@@ -49,10 +49,10 @@ const NewProduct = () => {
     formData.set("stock", String(stock));
     formData.set("category", category);
     formData.set("photo", photo);
-
+    
+    const toastId=toast.loading("Creating Product...")
     const res = await newProduct({ id: user?._id!, formData })
-
-    resAndNavigate(res, navigate, "/admin/product");
+    resAndNavigate(res, navigate, "/admin/product",toastId);
 
   }
 

@@ -53,7 +53,6 @@ const App = () => {
     onAuthStateChanged(auth, async (firebaseUser) => {
       // this is firebase user
       if (firebaseUser) {
-
         const data = await getUser(firebaseUser.uid)
         dispatch(userExist(data!.user))
       } else {
@@ -61,7 +60,9 @@ const App = () => {
 
       }
     })
-  }, [])
+  }, [dispatch])
+
+
   return (
 
     loading ? <Loader /> :

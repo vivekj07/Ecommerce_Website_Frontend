@@ -1,10 +1,10 @@
 .cart {
-    padding: 2rem 4rem;
-    @include flex(row, unset, unset, 4rem);
+    padding: 2rem 1rem;
+    @include flex(row, unset, unset, 1rem);
     height: calc(100vh - 4rem);
 
     >main {
-        width: 70%;
+        width: 60%;
 
         >h1 {
             @include heading(2px);
@@ -18,10 +18,15 @@
         }
     }
 
+    
+    
+
     >aside {
-        width: 30%;
+        width: 40%;
         padding: 4rem;
         @include flex(column, center, stretch, 1.5rem);
+
+        
 
         >input {
             padding: 1rem;
@@ -60,6 +65,61 @@
             }
         }
     }
+
+    .open{
+        display: block;
+        width: 80%;
+        max-width: 350px;
+        position: fixed;
+        top: 8rem;
+        right: 1rem;
+        z-index: 1000;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0,0.3);
+        padding: 2rem;
+        @include flex(column, center, stretch, 1.5rem);
+
+        
+
+        >input {
+            padding: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.28);
+            outline: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+
+        >p {
+            font-size: 1.1rem;
+        }
+
+        >a {
+            background-color: $color3;
+            padding: 1rem;
+            text-decoration: none;
+            color: $color1;
+            @include flex;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        >span {
+            margin-top: -1rem;
+            @include flex(row, center, center, 5px);
+
+            >code {
+                font-weight: 900;
+                align-self: flex-end;
+            }
+        }
+    }
+
+    
 }
 
 .cart-item {
@@ -117,5 +177,99 @@
         &:hover {
             color: red;
         }
+    }
+}
+
+.sidebar-toggle-btn {
+    display: none; // Hide by default
+    position: fixed; // Make it fixed
+    top: 4rem; // Position it on the top
+    right: 1rem; // Position it on the left
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0,0.9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    @media (max-width: 800px) {
+        display: block; // Show button when sidebar is closed
+    }
+}
+
+@media (max-width: 800px) {
+    .cart{
+        >main{
+            width:100%;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .cart-item{
+                width: 100%;
+            }
+        }
+        > aside{
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .cart{
+        >main{
+            width:100%;
+            padding: 0;
+
+            .cart-item{
+                width: 100%;
+            }
+        }
+        
+    }
+}
+
+@media (max-width: 500px) {
+    .cart{
+        >main{
+            .cart-item {
+                padding:1rem 0.5rem;
+                @include flex(row, flex-start, center, 1rem);
+            
+                >img {
+                    @include square(4rem);
+                    // object-fit: contain;
+                }
+            
+                >article {
+                    @include flex(column, center, flex-start, 0.25rem);
+            
+                    a {
+                        font-size: 1.2rem;
+                        color: $color2;
+            
+                        &:hover {
+                            color: $color3;
+                        }
+                    }
+            
+                    span {
+                        font-weight: 700;
+                    }
+                }
+            
+                >div {
+                    // margin-left: auto;
+                    @include flex;
+            
+                    
+                }
+            
+                
+            }
+
+        }
+        
     }
 }

@@ -9,11 +9,14 @@ export type MyUser = {
     _id: string,
     dob: string
 
-}
+} 
 
 export type Product = {
     name: string,
-    photo: string,
+    photo: {
+        url:string,
+        public_id:string
+    },
     stock: number,
     price: number,
     category: string,
@@ -30,7 +33,10 @@ export type ShippingInfo = {
 
 export type CartItem = {
     name: string,
-    photo: string,
+    photo: {
+        url:string,
+        public_id:string
+    },
     quantity: number,
     price: number,
     productId: string,

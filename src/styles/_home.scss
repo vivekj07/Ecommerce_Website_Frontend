@@ -1,5 +1,5 @@
 .home {
-    padding: 2rem 5%;
+    padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
     height: calc(100vh - 4rem);
@@ -24,7 +24,7 @@
 
     >h1 {
         @include heading(1px);
-        margin-top: 3rem;
+        margin-top: 1.5rem;
         @include flex(row, space-between, center);
     }
 
@@ -35,10 +35,13 @@
     >main {
 
         width: 100%;
-        min-height: 80%;
+        height: 100%;
+        // min-height: 80%;
 
         flex: 1;
         display: flex;
+        // justify-content: center;
+        align-items: center;
         gap: 1rem;
 
 
@@ -54,10 +57,10 @@
 
 .product-card {
     width: 18.75rem;
-    height: 20rem;
+    height: 18.75rem;
     padding: 1rem;
     flex: none;
-    @include flex(column, flex-start, center, 4px);
+    @include flex(column, center, center, 4px);
     position: relative;
 
     background-color: white;
@@ -68,7 +71,7 @@
 
     img {
         @include square(calc(15.75rem - 3rem));
-        object-fit: cover;
+        object-fit: contain;
         padding: 1rem;
         // margin: 3rem;
 
@@ -85,7 +88,7 @@
         @include square(100%);
         top: 0;
         left: 0;
-        background-color: #6666666b;
+        background-color: rgba(138, 170, 229,0.2);
         @include flex;
         border-radius: 10px;
         transition: all 0.2s;

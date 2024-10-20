@@ -9,6 +9,25 @@
     //     display: none;
     // }
 
+    
+
+    .sidebar-toggle-btn {
+        display: none; // Hide by default
+        position: fixed; // Make it fixed
+        top: 1rem; // Position it on the top
+        left: 1rem; // Position it on the left
+        padding: 0.5rem 1rem;
+        background-color: rgba(0, 0, 0,0.9);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 2rem;
+        width: 5rem;
+        @media (max-width: 1020px) {
+            display: block; // Show button when sidebar is closed
+        }
+    }
 
     >aside {
         min-width: 20rem;
@@ -16,7 +35,20 @@
         padding: 2rem;
         @include flex(column, flex-start, stretch, 0.5rem);
 
+        transition: transform 0.3s ease;
+        transform: translateX(0); // sidebar is visible
 
+        // &.closed {
+        //     transform: translateX(-10%); // hide sidebar
+        // }
+        &.open {
+            display: block;
+            width: 20rem;
+            background-color: white;
+            position: fixed;
+            z-index: 1000;
+            // transform: translateX(0); 
+        }
 
         >h2 {
             @include heading;
@@ -36,10 +68,10 @@
         }
     }
 
+   
+
     >main {
         width: 100%;
-        padding: 0 2rem;
-
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -51,7 +83,7 @@
         }
 
         >input {
-            @include inputStyle(50%);
+            @include inputStyle(80%);
             border-radius: 5px;
             margin: 1rem;
             font-size: 1.2rem;
@@ -59,7 +91,7 @@
         }
 
         .search-product-list {
-            @include flex(row, space-evenly, flex-start);
+            @include flex(row, space-evenly, flex-start,0);
             flex-wrap: wrap;
             // height: calc(100% - 10rem);
 
@@ -88,4 +120,24 @@
             }
         }
     }
+
+    @media (max-width: 1024px) {
+        // flex-direction: column; // Stack aside and main vertically
+        > aside {
+            display: none;
+            width: 90%; 
+            max-width: 20rem;
+        }
+
+        > main {
+            
+
+            article {
+                flex-direction: row; // Keep the button layout horizontal
+                justify-content: space-between;
+            }
+        }
+    }
+
 }
+

@@ -3,11 +3,11 @@ import { FaTrash } from "react-icons/fa";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useDeleteProductMutation, useProductDetailsQuery, useUpdateProductMutation } from "../../../redux/api/productAPI";
-import { server } from "../../../redux/store";
 import { Skeleton } from "../../../components/Loader";
 import { useSelector } from "react-redux";
 import { userReducerInitialState } from "../../../types/reducer-type";
 import { resAndNavigate } from "../../../utils/features";
+import toast from "react-hot-toast";
 
 
 const Productmanagement = () => {
@@ -22,7 +22,10 @@ const Productmanagement = () => {
     category: "",
     stock: 0,
     name: "",
-    photo: "",
+    photo: {
+      url:"",
+      public_id:""
+    },
   };
 
 
@@ -31,7 +34,7 @@ const Productmanagement = () => {
   const [nameUpdate, setNameUpdate] = useState<string>(name);
   const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
   const [photoUpdate, setPhotoUpdate] = useState<string>("");
-  const [, setPhotoFile] = useState<File>();
+  const [photoFile, setPhotoFile] = useState<File>();
 
 
   const changeImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +57,9 @@ const Productmanagement = () => {
   const [deleteProduct] = useDeleteProductMutation();
 
   const deleteHandler = async () => {
+    const toastId=toast.loading("Deleteting Product...")
     const res = await deleteProduct({ productId: params.id!, userId: user?._id! });
-    resAndNavigate(res, navigate, "/admin/product")
+    resAndNavigate(res, navigate, "/admin/product",toastId)
   }
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -67,11 +71,11 @@ const Productmanagement = () => {
     if (priceUpdate) formData.set("price", String(priceUpdate));
     if (stockUpdate !== undefined) formData.set("stock", String(stockUpdate));
     if (categoryUpdate) formData.set("category", categoryUpdate);
-    if (photoUpdate) formData.set("photo", photoUpdate);
-
+    if (photoFile) formData.set("photo", photoFile);
+   
+    const toastId=toast.loading("Updating Product...")
     const res = await update({ productId: params.id!, userId: user?._id!, formData });
-
-    resAndNavigate(res, navigate, "/admin/product")
+    resAndNavigate(res, navigate, "/admin/product",toastId)
   };
 
   useEffect(() => {
@@ -92,7 +96,7 @@ const Productmanagement = () => {
         {isLoading ? <Skeleton length={20} /> :
           <><section>
             <strong>{data?.product._id}</strong>
-            <img src={`${server}/${photo}`} alt="Product" />
+            <img src={`${photo.url}`} alt="Product" />
             <p>{name}</p>
             {stock > 0 ? (
               <span className="green">{stock} Available</span>

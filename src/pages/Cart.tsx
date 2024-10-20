@@ -8,8 +8,11 @@ import { addToCart, applyDiscount, calculatePrice, removeCartItem } from '../red
 import { CartItem } from '../types/types';
 import axios from 'axios';
 import { server } from '../redux/store';
+import { RxCross1 } from 'react-icons/rx';
 const Cart = () => {
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
     const dispatch = useDispatch();
     const { subtotal,
         total,
@@ -26,15 +29,16 @@ const Cart = () => {
     const incrementHandler = (cartItem: CartItem) => {
         if (cartItem.stock <= cartItem.quantity) return;
         dispatch(addToCart({ ...cartItem, quantity: cartItem.quantity + 1 }));
-
-
     }
     const decrementHandler = (cartItem: CartItem) => {
         if (cartItem.quantity <= 1) return;
         dispatch(addToCart({ ...cartItem, quantity: cartItem.quantity - 1 }));
-
-
     }
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen((prev) => !prev);
+    };
+
     const removeHandler = (productId: string) => {
         dispatch(removeCartItem(productId));
 
@@ -73,6 +77,9 @@ const Cart = () => {
 
     return (
         <div className='cart'>
+            <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
+                {isSidebarOpen ? <RxCross1 /> : "Check"}
+            </button>
             <main>
                 {cartItems.length > 0 ? (
                     cartItems.map((i, idx) => (
@@ -89,7 +96,7 @@ const Cart = () => {
                     <h1>No Items Added</h1>
                 )}
             </main>
-            <aside>
+            <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
                 <p className='green' style={{ wordSpacing: 2, letterSpacing: 1 }}>Products : <span>{cartItems.length}</span> </p>
                 <p>Subtotal: ₹{subtotal}</p>
                 <p>Shipping Charges: ₹{shippingcharges}</p>

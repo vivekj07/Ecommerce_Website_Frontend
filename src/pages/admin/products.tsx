@@ -8,7 +8,6 @@ import { Skeleton } from "../../components/Loader";
 import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
 import { useAllproductsQuery } from "../../redux/api/productAPI";
-import { server } from "../../redux/store";
 import { CustomError } from "../../types/api-types";
 import { userReducerInitialState } from "../../types/reducer-type";
 
@@ -62,7 +61,7 @@ const Products = () => {
     if (data) {
       setRows(
         data.products.map((i) => ({
-          photo: <img src={`${server}/${i.photo}`} ></img >,
+          photo: <img src={`${i.photo.url}`} ></img >,
           name: i.name,
           price: i.price,
           stock: i.stock,

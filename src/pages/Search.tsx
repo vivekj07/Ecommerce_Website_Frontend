@@ -7,6 +7,7 @@ import { Skeleton } from "../components/Loader";
 import { CartItem } from "../types/types";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/reducers/cartReducer";
+import { RxCross1 } from "react-icons/rx";
 
 const search = () => {
 
@@ -26,6 +27,7 @@ const search = () => {
     const [maxPrice, setMaxPrice] = useState(0);
     const [category, setCategory] = useState("");
     const [page, setPage] = useState(1);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 
     const { data: SearchedData,
@@ -43,7 +45,9 @@ const search = () => {
         toast.error(err.data.message)
     }
 
-
+    const toggleSidebar = () => {
+        setIsSidebarOpen((prev) => !prev);
+    };
 
     const addToCartHandler = (cartItem: CartItem) => {
         if (cartItem.stock < 1) return toast.error("Out of Stock")
@@ -52,7 +56,11 @@ const search = () => {
     };
     return (
         <div className="product-search-page">
-            <aside>
+            <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
+                {isSidebarOpen ? <RxCross1 /> : "Filters"}
+            </button>
+
+            <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
                 <h2>Filters</h2>
                 <div>
                     <h4>Sort</h4>
@@ -101,7 +109,7 @@ const search = () => {
                     {
                         SearchedLoading ? <Skeleton length={10} /> :
                             SearchedData?.products.map((i) => (
-                                <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo} stock={i.stock} price={i.price}
+                                <ProductCard key={i._id} name={i.name} productID={i._id} photo={i.photo.url} stock={i.stock} price={i.price}
                                     handler={addToCartHandler} />
                             ))
                     }
