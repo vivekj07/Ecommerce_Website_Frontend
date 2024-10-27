@@ -43,6 +43,7 @@ const Header = ({ user }: { user: MyUser | null }) => {
                                 <FaUser />
                             </button>
 
+                            <div className="dialog">
                             <dialog open={isOpen}>
                                 <div >
                                     {
@@ -57,6 +58,7 @@ const Header = ({ user }: { user: MyUser | null }) => {
                                     </button>
                                 </div>
                             </dialog>
+                            </div>
                         </>
                     ) : (<>
                         <Link to="/login">

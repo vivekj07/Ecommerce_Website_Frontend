@@ -47,7 +47,10 @@ export type CartItem = {
 
 export type OrderItem = {
     name: string,
-    photo: string,
+    photo: {
+        url:string,
+        public_id:string
+    },
     quantity: number,
     price: number,
     productId: string,

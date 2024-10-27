@@ -70,7 +70,7 @@ const Orders = () => {
                 >
                     {i.status}
                 </span>,
-                action: <Link to={`/${i._id}`} >view</Link>,
+                action: <Link to={`${i._id}`} >view</Link>
             })))
         }
     }, [data])

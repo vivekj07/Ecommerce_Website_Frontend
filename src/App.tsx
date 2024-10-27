@@ -22,6 +22,8 @@ const Login = lazy(() => import("./pages/Login"))
 const Orders = lazy(() => import("./pages/Orders"))
 const NotFound = lazy(() => import("./pages/not-found"));
 const Checkout = lazy(() => import("./pages/Checkout"));
+const OrderDetails = lazy(() => import("./pages/OrderDetails"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 
 
 // Admin Pages
@@ -42,6 +44,7 @@ const ProductManagement = lazy(
 const TransactionManagement = lazy(
   () => import("./pages/admin/management/transactionmanagement")
 );
+
 
 const App = () => {
   let { user, loading } = useSelector((state: { userReducer: userReducerInitialState }) => state.userReducer)
@@ -74,6 +77,8 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/orders/:id" element={<OrderDetails />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
 
               <Route path="/login" element={
                 < ProtectedRoute isAuthenticated={user ? false : true} >

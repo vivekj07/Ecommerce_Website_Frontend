@@ -1,22 +1,12 @@
 import { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { Skeleton } from "../../../components/Loader";
-import AdminSidebar from "../../../components/admin/AdminSidebar";
-import { useDeleteOrderMutation, useOrderDetailsQuery, useProcessOrderMutation } from "../../../redux/api/orderAPI";
-import { userReducerInitialState } from "../../../types/reducer-type";
-import { Order, OrderItem } from "../../../types/types";
-import { resAndNavigate } from "../../../utils/features";
+import { Link, Navigate, useParams } from "react-router-dom";
+import { Skeleton } from "../components/Loader";
+import { useOrderDetailsQuery } from "../redux/api/orderAPI";
+import { Order, OrderItem } from "../types/types";
 
 
 
-const TransactionManagement = () => {
-  const { user } = useSelector((state: { userReducer: userReducerInitialState }) => state.userReducer)
-  const [processOrder] = useProcessOrderMutation();
-  const [deleteOrder] = useDeleteOrderMutation();
-
-  const navigate = useNavigate()
+const OrderDetails = () => {
 
   const params = useParams();
   const { data, isError, isLoading } = useOrderDetailsQuery(params.id!);
@@ -44,17 +34,6 @@ const TransactionManagement = () => {
   });
 
 
-  const processHandler = async () => {
-    const res = await processOrder({ userId: user?._id!, orderId: params.id! });
-    resAndNavigate(res, navigate, "/admin/transaction")
-
-  };
-
-  const deleteHandler = async () => {
-    const res = await deleteOrder({ userId: user?._id!, orderId: params.id! });
-
-    resAndNavigate(res, navigate, "/admin/transaction")
-  }
 
   useEffect(() => {
     if (data) {
@@ -65,8 +44,7 @@ const TransactionManagement = () => {
   if (isError) return <Navigate to={"/404"} />
 
   return (
-    <div className="admin-container">
-      <AdminSidebar />
+    <div className="order-container">
       <main className="product-management">
         {isLoading ? <Skeleton length={20} /> : <>
           <section
@@ -80,7 +58,7 @@ const TransactionManagement = () => {
               <ProductCard
                 key={i._id}
                 name={i.name}
-                photo={i.photo}  
+                photo={i.photo} 
                 productId={i.productId}
                 _id={i._id}
                 quantity={i.quantity}
@@ -90,9 +68,7 @@ const TransactionManagement = () => {
           </section>
 
           <article className="shipping-info-card">
-            <button className="product-delete-btn" onClick={deleteHandler}>
-              <FaTrash />
-            </button>
+            
             <h1>Order Info</h1>
             <h5>User Info</h5>
             <p>Name: {order.user.name}</p>
@@ -123,9 +99,7 @@ const TransactionManagement = () => {
                 {order.status}
               </span>
             </p>
-            <button className="shipping-btn" onClick={processHandler}>
-              Process Status
-            </button>
+            
           </article></>}
       </main>
     </div>
@@ -148,4 +122,4 @@ const ProductCard = ({
   </div>
 );
 
-export default TransactionManagement;
+export default OrderDetails;

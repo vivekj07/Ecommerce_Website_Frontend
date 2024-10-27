@@ -15,39 +15,65 @@
     gap: 4rem;
     flex-wrap: wrap;
     margin: 2rem;
-
-
-
-
-
+  
     .coupon-card {
       width: 80%;
       max-width: 15rem;
-      height: 10rem;
-      // background-color: rgba(214, 214, 214, 0.5);
+      height: 12rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 1rem;
-      border-radius: 10px;
-      font-size: 20px;
-      box-shadow: 2px 2px 11px rgba(214, 214, 214);
-
+      border-radius: 20px;
+      font-size: 1.2rem;
+      color: #fff;
+      // box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
       position: relative;
-
-      >svg {
+      background-color: white;
+      border: 1px solid rgba(0, 0, 0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.5s ease;
+  
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      p {
+        margin: 0;
+        font-weight: bold;
+        text-align: center;
+  
+        &.green {
+          color: black;
+        }
+  
+        &.red {
+          color: #f87171;
+        }
+      }
+  
+      > svg {
         height: 2rem;
         width: 2rem;
         padding: 5px;
         position: absolute;
-        top: 5px;
-        right: 5px;
-        color: red;
+        top: 10px;
+        right: 10px;
+        color: #ff6b6b;
         cursor: pointer;
+        background-color: white;
+        border-radius: 50%;
+        transition: background-color 0.3s, color 0.3s;
+  
+        &:hover {
+          color: white;
+          background-color: #ff6b6b;
+        }
       }
     }
   }
+  
 
   .coupon-box {
     position: absolute;

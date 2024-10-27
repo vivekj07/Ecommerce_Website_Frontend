@@ -48,6 +48,9 @@ $color3: rgb(0, 104, 136);
 @import "shipping";
 @import "login";
 @import "search";
+@import "order";
+@import "product";
+
 
 .container {
     max-width: 1367px;
@@ -106,21 +109,22 @@ $color3: rgb(0, 104, 136);
 
 
 
-    >dialog {
-        padding: 10px;
-        width: 100px;
+    .dialog{
         position: absolute;
         top: 3rem;
-        left: 90%;
-        border: 1px solid;
-        border-radius: 5px;
-        z-index: 1000;
-
-        >div {
-
-            @include flex(column, flex-start, center, 0.2rem);
+        right: 105px;
+        >dialog {
+            padding: 10px;
+            width: 100px;
+            border: 1px solid;
+            border-radius: 5px;
+            z-index: 1000;
+    
+            >div {
+                @include flex(column, flex-start, center, 0.2rem);
+            }
+    
         }
-
     }
 }
 
