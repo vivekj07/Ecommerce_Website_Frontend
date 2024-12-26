@@ -143,5 +143,19 @@
           }
         }
       }
+
+      @media (max-width: 900px) {
+        .product-management {
+          @include flex(column, center, center,2rem);
+          padding: 1rem;
+
+          >section {
+            overflow-y: auto;
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+          }
+        }
+    }
 }
 

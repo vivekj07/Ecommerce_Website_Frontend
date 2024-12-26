@@ -1,7 +1,7 @@
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
-import { Skeleton } from "../components/Loader";
+import Loader from "../components/Loader";
 import { useProductDetailsQuery } from "../redux/api/productAPI";
 import { MessageResponse } from "../types/api-types";
 
@@ -30,7 +30,7 @@ const ProductDetails = () => {
   return (
     <div className="product-details">
       <main className="product-details-container">
-      {isLoading ? <Skeleton length={10} /> : (
+      {isLoading ? <Loader />: (
         <section className="product-details">
           {/* <strong>{data?.product._id}</strong> */}
           <img src={`${photo?.url}`} alt={name || "Product"} />
